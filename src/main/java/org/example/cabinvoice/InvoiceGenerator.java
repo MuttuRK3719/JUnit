@@ -15,7 +15,7 @@ public class InvoiceGenerator {
 
     public double calculateTotalFare(InvoiceService service, int minutes, int km) {
         if (service == null) throw new NullPointerException("Invalid service type");
-        if (minutes <= 0) throw new InvalidInputException();
+        if (minutes <= 0||km<0) throw new InvalidInputException();
         double amount = minutes * service.getMinutePrice();
         amount += km * service.getKmPrice();
         if (amount < service.getMinimumPrice()) {

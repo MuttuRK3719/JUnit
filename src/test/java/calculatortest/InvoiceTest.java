@@ -62,5 +62,9 @@ public class InvoiceTest {
         assertEquals(result,amount);
 
     }
+    @Test
+    public void test6(){
+        assertThrows(InvalidInputException.class,()->invoice.calculateTotalFare(premiumService,2,-1));
+    }
 
 }
