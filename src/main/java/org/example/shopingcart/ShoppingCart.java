@@ -21,6 +21,7 @@ public class ShoppingCart implements CartCrud {
 
     @Override
     public boolean removeItem(Product product) {
+        if (productList.size() == 0) throw new NoSuchProductsAvailable();
         return productList.remove(product);
     }
 
@@ -31,6 +32,7 @@ public class ShoppingCart implements CartCrud {
 
     @Override
     public double calculatePrice() {
+        if (productList.size() == 0) throw new NoSuchProductsAvailable();
         double totalAmount = 0;
         totalAmount = productList
                 .stream()
