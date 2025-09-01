@@ -35,4 +35,8 @@ public class ShoppingCartTest {
         Product speaker=new Product(101,"Sony",-100);
         assertThrows(InvalidProductDetails.class,()->shoppingCart.addItem(speaker));
     }
+    @Test
+    void test6(){
+        assertThrows(InvalidProductDetails.class,()->shoppingCart.addItem(null));
+    }
 }
