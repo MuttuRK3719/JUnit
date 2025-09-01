@@ -1,0 +1,41 @@
+package org.example.shopingcart;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ShoppingCart implements CartCrud {
+    private List<Product> productList;
+
+    public ShoppingCart() {
+        productList = new ArrayList<>();
+    }
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    @Override
+    public boolean addItem(Product product) {
+        return productList.add(product);
+    }
+
+    @Override
+    public boolean removeItem(Product product) {
+        return productList.remove(product);
+    }
+
+    @Override
+    public void displayItems() {
+        productList.forEach(Product::getItemDetails);
+    }
+
+    @Override
+    public double calculatePrice() {
+        double totalAmount = 0;
+        totalAmount = productList
+                .stream()
+                .mapToDouble(p -> (double) p.getProductPrice())
+                .sum();
+        return totalAmount;
+    }
+}
