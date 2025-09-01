@@ -66,4 +66,9 @@ public class ShoppingCartTest {
         Product laptop = new Product(104, "Laptop", 50000);
         return Stream.of(mobile,tv,fridge,laptop);
     }
+    @Test
+    void test8() {
+        Product product =new Product(99,null,2999);
+        assertThrows(InvalidProductDetails.class,()->shoppingCart.addItem(product));
+    }
 }
