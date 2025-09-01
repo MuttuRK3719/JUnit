@@ -24,8 +24,10 @@ public class Product {
     }
 
     public void getItemDetails() {
+        System.out.println("===========================================");
         System.out.println("Product id is: " + productId);
         System.out.println("Product name is: " + productName);
         System.out.println("Product price is: " + productPrice);
+
     }
 }
