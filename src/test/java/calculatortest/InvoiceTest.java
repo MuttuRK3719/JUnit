@@ -18,13 +18,11 @@ public class InvoiceTest {
 
     @Test
     public void test1() {
-        invoice.setRideDetails(customer, 10, 4);
+        invoice.setRideDetails(customer, 10, 4);//15*4+20
         invoice.setRideDetails(customer, 1, 0);
 
         double amount = invoice.getInvoice(customer);
-//        assertEquals(80+20,amount);
-        double amount1 = invoice.calculateTotalFare(premiumService, 1, 0);
-        assertEquals(20, amount1);
+        assertEquals(100, amount);
     }
 
     @ParameterizedTest
@@ -66,5 +64,22 @@ public class InvoiceTest {
     public void test6(){
         assertThrows(InvalidInputException.class,()->invoice.calculateTotalFare(premiumService,2,-1));
     }
+    @Test
+    public void test7(){
+        Customer customer=new Customer(101,premiumService);
+        invoice.setRideDetails(customer,5,2); //premium 2*5+2*15 =40;
+        invoice.setRideDetails(customer,5,2);
+        invoice.setRideDetails(customer,5,2);
+        double totalAmount=3*40;
+        assertEquals(totalAmount,customer.getAmount());
+    }
+    @Test
+    public void test8(){
+        assertThrows(InvalidInputException.class,()->invoice.calculateTotalFare(premiumService,-1,10));
 
+    }
+    @Test
+    public void test9() {
+        assertThrows(InvalidInputException.class, () -> invoice.setRideDetails(null, -1, 10));
+    }
 }

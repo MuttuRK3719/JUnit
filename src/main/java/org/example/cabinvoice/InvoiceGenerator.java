@@ -6,11 +6,15 @@ public class InvoiceGenerator {
     }
 
     public void setRideDetails(Customer customer, int minutes, int km) {
+        if (customer == null) throw new InvalidInputException();
+
         customer.setRide(customer.getRide() + 1);
-        customer.setTotalMinutes(customer.getTotalMinutes() + minutes);
-        customer.setTotalTravel(customer.getTotalTravel() + km);
-        double amount = calculateTotalFare(customer.getService(), minutes, km);
-        customer.setAmount(amount);
+        int customerTotalMin=customer.getTotalMinutes();
+        customer.setTotalMinutes(customerTotalMin + minutes);
+        int customerTravel=customer.getTotalTravel();
+        customer.setTotalTravel(customerTravel + km);
+        double amount = calculateTotalFare(customer.getService(), minutes,km);
+        customer.setAmount(customer.getAmount()+amount);
     }
 
     public double calculateTotalFare(InvoiceService service, int minutes, int km) {
