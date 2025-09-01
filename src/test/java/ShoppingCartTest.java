@@ -1,7 +1,4 @@
-import org.example.shopingcart.CartCrud;
-import org.example.shopingcart.NoSuchProductsAvailable;
-import org.example.shopingcart.Product;
-import org.example.shopingcart.ShoppingCart;
+import org.example.shopingcart.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,5 +30,9 @@ public class ShoppingCartTest {
     void test4(){
         assertThrows(NoSuchProductsAvailable.class,()->shoppingCart.removeItem(mobile));
     }
-
+    @Test
+    void test5(){
+        Product speaker=new Product(101,"Sony",-100);
+        assertThrows(InvalidProductDetails.class,()->shoppingCart.addItem(speaker));
+    }
 }

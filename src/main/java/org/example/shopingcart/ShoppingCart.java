@@ -16,11 +16,19 @@ public class ShoppingCart implements CartCrud {
 
     @Override
     public boolean addItem(Product product) {
+        if (product.getProductId() < 0
+                || product.getProductPrice() <= 0
+                || product.getProductName() == null)
+            throw new InvalidProductDetails();
         return productList.add(product);
     }
 
     @Override
     public boolean removeItem(Product product) {
+        if (product.getProductId() < 0
+                || product.getProductPrice() <= 0
+                || product.getProductName() == null)
+            throw new InvalidProductDetails();
         if (productList.size() == 0) throw new NoSuchProductsAvailable();
         return productList.remove(product);
     }
