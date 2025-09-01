@@ -16,7 +16,7 @@ public class ShoppingCart implements CartCrud {
 
     @Override
     public boolean addItem(Product product) {
-        if (product != null
+        if (product == null
                 || product.getProductId() < 0
                 || product.getProductPrice() <= 0
                 || product.getProductName() == null)
@@ -26,7 +26,7 @@ public class ShoppingCart implements CartCrud {
 
     @Override
     public boolean removeItem(Product product) {
-        if (product != null
+        if (product == null
                 || product.getProductId() < 0
                 || product.getProductPrice() <= 0
                 || product.getProductName() == null)
